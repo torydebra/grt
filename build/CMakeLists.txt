@@ -14,7 +14,7 @@ option(BUILD_EXAMPLES “build-examples” ON)
 option(BUILD_TOOLS “build-tools” ON)
 option(BUILD_SHARED_LIBS "build-shared-lib" ON)
 option(EXCLUDE_FROM_INSTALL "exclude-from-install" OFF)
-option(BUILD_PYTHON_BINDING "build-python" ON)
+option(BUILD_PYTHON_BINDING "build-python" OFF)
 
 #Setup the default build flags
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} ")
