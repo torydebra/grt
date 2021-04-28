@@ -9,3 +9,5 @@ build/examples/*.csv
 build/examples/*.grt
 obj/
 libs/
+build/examples/*
+build/temp
