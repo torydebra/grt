@@ -11,3 +11,4 @@ obj/
 libs/
 build/examples/*
 build/temp
+*.kdev4
