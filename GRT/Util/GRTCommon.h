@@ -69,6 +69,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #include "TestInstanceResult.h"
 #include "TestResult.h"
 #include "CircularBuffer.h"
+#include "CircularBufferMatrixFloat.h"
 #include "Timer.h"
 #include "TimeStamp.h"
 #include "Random.h"

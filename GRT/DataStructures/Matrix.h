@@ -392,10 +392,10 @@ public:
      @return returns true or false, indicating if the set was successful 
     */
     bool setRowVector(const Vector<T> &row,const unsigned int rowIndex){
-        if( dataPtr == NULL ) return false;
+        if( dataPtr == NULL )  return false;
         if( row.size() != cols ) return false;
-        if( rowIndex >= rows ) return false;
-
+        if( rowIndex >= rows )  return false;
+                
         unsigned int j = 0;
         for(j=0; j<cols; j++)
             dataPtr[ rowIndex * cols + j ] = row[ j ];
