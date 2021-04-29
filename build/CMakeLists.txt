@@ -337,7 +337,7 @@ if(BUILD_TOOLS)
 endif() #BUILD_TOOLS
 
 if(UNIX AND NOT EXCLUDE_FROM_INSTALL)
-    set(CMAKE_INSTALL_LIBDIR "lib/${CMAKE_LIBRARY_ARCHITECTURE}" CACHE PATH "Output directory for libraries")
+    set(CMAKE_INSTALL_LIBDIR "lib/" CACHE PATH "Output directory for libraries")
     install(FILES ${CMAKE_CURRENT_BINARY_DIR}/grt.pc                         
         DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig                               
     )
@@ -346,7 +346,21 @@ endif()
 # Generate downstream build-tree CMake infrastructure
 export(TARGETS
   ${GRT_LIB_NAME}
-  FILE "${CMAKE_BINARY_DIR}/${GRT_LIB_NAME}Targets.cmake"
+  FILE "${CMAKE_CURRENT_BINARY_DIR}/${GRT_LIB_NAME}Targets.cmake"
   )
 CONFIGURE_FILE(${GRT_LIB_NAME}Config.cmake.in
-  "${CMAKE_BINARY_DIR}/${GRT_LIB_NAME}Config.cmake" @ONLY)
+  "${CMAKE_CURRENT_BINARY_DIR}/${GRT_LIB_NAME}Config.cmake" @ONLY)
+
+# install cmake targets to install directory so other packages with find package can find them 
+# without to set grt_DIR to the temp build directory
+if(UNIX AND NOT EXCLUDE_FROM_INSTALL)
+	set(ConfigPackageLocation ${CMAKE_INSTALL_LIBDIR}/cmake/${GRT_LIB_NAME})
+	install(
+		FILES "${CMAKE_CURRENT_BINARY_DIR}/${GRT_LIB_NAME}Targets.cmake"
+		DESTINATION ${ConfigPackageLocation}
+	)
+	install(
+		FILES "${CMAKE_CURRENT_BINARY_DIR}/${GRT_LIB_NAME}Config.cmake"
+		DESTINATION ${ConfigPackageLocation}
+	)  
+endif()
